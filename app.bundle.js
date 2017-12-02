@@ -84,9 +84,15 @@ var _Mocker2 = _interopRequireDefault(_Mocker);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var mocker = new _Mocker2.default();
+var group = new _Mocker2.default();
 
-mocker.listPeople();
+group.people.forEach(function (person) {
+    console.log(person.name);
+});
+
+group.transactions.forEach(function (transaction) {
+    return console.log(transaction);
+});
 
 /***/ }),
 /* 1 */
@@ -144,11 +150,18 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // This class mocks data returned from a database
+
 
 var _Person = __webpack_require__(1);
 
 var _Person2 = _interopRequireDefault(_Person);
+
+var _Transaction = __webpack_require__(2);
+
+var _Transaction2 = _interopRequireDefault(_Transaction);
+
+var _Utils = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -158,12 +171,13 @@ var Mocker = function () {
   function Mocker() {
     _classCallCheck(this, Mocker);
 
-    this.people = this.data();
+    this.people = this.mockPeople();
+    this.transactions = this.mockTransactions();
   }
 
   _createClass(Mocker, [{
-    key: "data",
-    value: function data() {
+    key: 'mockPeople',
+    value: function mockPeople() {
       var people = ["rebecca", "rachel", "kevin", "billy"];
 
       return people.map(function (name) {
@@ -171,9 +185,19 @@ var Mocker = function () {
       });
     }
   }, {
-    key: "listPeople",
+    key: 'listPeople',
     value: function listPeople() {
       console.log(this.people);
+    }
+  }, {
+    key: 'mockTransactions',
+    value: function mockTransactions() {
+      var people = ["rebecca", "rachel", "kevin", "billy"];
+      var mockTransactions = [];
+      mockTransactions.push([12.50, (0, _Utils.randomValueFromArray)(people), [(0, _Utils.randomValueFromArray)(people), (0, _Utils.randomValueFromArray)(people), (0, _Utils.randomValueFromArray)(people)]], [100.00, (0, _Utils.randomValueFromArray)(people), [(0, _Utils.randomValueFromArray)(people), (0, _Utils.randomValueFromArray)(people)]], [20.99, (0, _Utils.randomValueFromArray)(people), [(0, _Utils.randomValueFromArray)(people), (0, _Utils.randomValueFromArray)(people), (0, _Utils.randomValueFromArray)(people), (0, _Utils.randomValueFromArray)(people)]]);
+      return mockTransactions.map(function (transaction) {
+        return new _Transaction2.default(transaction);
+      });
     }
   }]);
 
@@ -181,6 +205,24 @@ var Mocker = function () {
 }();
 
 exports.default = Mocker;
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.randomValueFromArray = randomValueFromArray;
+// Utility functions
+
+function randomValueFromArray(myArray) {
+
+    return myArray[Math.floor(Math.random() * myArray.length)];
+}
 
 /***/ })
 /******/ ]);
