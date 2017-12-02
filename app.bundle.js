@@ -166,11 +166,9 @@ var Mocker = function () {
     value: function data() {
       var people = ["rebecca", "rachel", "kevin", "billy"];
 
-      people = people.map(function (name) {
-        console.log(new _Person2.default(name));
+      return people.map(function (name) {
         return new _Person2.default(name);
       });
-      // console.log(people);
     }
   }, {
     key: "listPeople",

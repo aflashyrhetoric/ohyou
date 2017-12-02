@@ -4,5 +4,4 @@ import Mocker from './Mocker';
 
 const mocker = new Mocker();
 
-
 mocker.listPeople()

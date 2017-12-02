@@ -12,11 +12,9 @@ export default class Mocker {
       "billy"
     ]
 
-    people = people.map( (name) => {
-      console.log(new Person(name));
+   return people.map( (name) => {
       return new Person(name) 
     })
-    // console.log(people);
   }
 
   listPeople() {
