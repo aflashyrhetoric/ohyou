@@ -129,7 +129,9 @@ var _Mocker2 = _interopRequireDefault(_Mocker);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var group = new _Mocker2.default({ transactionAmount: 10 });
+var group = new _Mocker2.default({
+  transactionAmount: 10
+});
 
 group.listPeople();
 group.listTransactions();
