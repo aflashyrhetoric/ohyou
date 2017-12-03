@@ -3,7 +3,7 @@ import Transaction from './Transaction';
 import Mocker from './Mocker';
 
 const group = new Mocker({
-  transactionAmount: 10
+  transactionAmount: 1
 });
 
 // group.listPeople();

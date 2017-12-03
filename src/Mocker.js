@@ -43,7 +43,14 @@ export default class Mocker {
       }
 
       for(let j=0; j < randomPersonIndex; j++) {
-        beneficiaries.push(randomValueFromArray(people));
+        // Get a random person
+        let randomPerson = randomValueFromArray(people)
+
+        // If they exist already, exclude
+        while(beneficiaries.includes(randomPerson)) {
+          randomPerson = randomValueFromArray(people)
+        }
+        beneficiaries.push(randomPerson);
       }
 
       mockTransactions.push([

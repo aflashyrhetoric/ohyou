@@ -130,7 +130,7 @@ var _Mocker2 = _interopRequireDefault(_Mocker);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var group = new _Mocker2.default({
-  transactionAmount: 10
+  transactionAmount: 1
 });
 
 // group.listPeople();
@@ -209,7 +209,14 @@ var Mocker = function () {
         }
 
         for (var j = 0; j < randomPersonIndex; j++) {
-          beneficiaries.push((0, _Utils.randomValueFromArray)(_Database.people));
+          // Get a random person
+          var randomPerson = (0, _Utils.randomValueFromArray)(_Database.people);
+
+          // If they exist already, exclude
+          while (beneficiaries.includes(randomPerson)) {
+            randomPerson = (0, _Utils.randomValueFromArray)(_Database.people);
+          }
+          beneficiaries.push(randomPerson);
         }
 
         mockTransactions.push([(0, _Utils.randomTotal)(), (0, _Utils.randomValueFromArray)(_Database.people), beneficiaries]);
