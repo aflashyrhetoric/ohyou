@@ -60,42 +60,11 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _Person = __webpack_require__(1);
-
-var _Person2 = _interopRequireDefault(_Person);
-
-var _Transaction = __webpack_require__(2);
-
-var _Transaction2 = _interopRequireDefault(_Transaction);
-
-var _Mocker = __webpack_require__(3);
-
-var _Mocker2 = _interopRequireDefault(_Mocker);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var group = new _Mocker2.default();
-
-group.people.forEach(function (person) {
-    console.log(person.name);
-});
-
-group.transactions.forEach(function (transaction) {
-    return console.log(transaction);
-});
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -116,7 +85,7 @@ var Person = function Person(name) {
 exports.default = Person;
 
 /***/ }),
-/* 2 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -140,6 +109,32 @@ var Transaction = function Transaction(amount, purchaser, beneficiaries) {
 exports.default = Transaction;
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _Person = __webpack_require__(0);
+
+var _Person2 = _interopRequireDefault(_Person);
+
+var _Transaction = __webpack_require__(1);
+
+var _Transaction2 = _interopRequireDefault(_Transaction);
+
+var _Mocker = __webpack_require__(3);
+
+var _Mocker2 = _interopRequireDefault(_Mocker);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var group = new _Mocker2.default({ transactionAmount: 10 });
+
+group.listPeople();
+group.listTransactions();
+
+/***/ }),
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -153,11 +148,11 @@ Object.defineProperty(exports, "__esModule", {
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // This class mocks data returned from a database
 
 
-var _Person = __webpack_require__(1);
+var _Person = __webpack_require__(0);
 
 var _Person2 = _interopRequireDefault(_Person);
 
-var _Transaction = __webpack_require__(2);
+var _Transaction = __webpack_require__(1);
 
 var _Transaction2 = _interopRequireDefault(_Transaction);
 
@@ -168,11 +163,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Mocker = function () {
-  function Mocker() {
+  function Mocker(config) {
     _classCallCheck(this, Mocker);
 
     this.people = this.mockPeople();
-    this.transactions = this.mockTransactions();
+    this.transactions = config.transactionAmount ? this.mockTransactions(config.transactionAmount) : 5;
   }
 
   _createClass(Mocker, [{
@@ -187,16 +182,48 @@ var Mocker = function () {
   }, {
     key: 'listPeople',
     value: function listPeople() {
-      console.log(this.people);
+      console.log('This group consists of:');
+      this.people.forEach(function (person, index) {
+        console.log((0, _Utils.capitalize)(person.name));
+      });
     }
   }, {
     key: 'mockTransactions',
-    value: function mockTransactions() {
+    value: function mockTransactions(amount) {
       var people = ["rebecca", "rachel", "kevin", "billy"];
+
       var mockTransactions = [];
-      mockTransactions.push([12.50, (0, _Utils.randomValueFromArray)(people), [(0, _Utils.randomValueFromArray)(people), (0, _Utils.randomValueFromArray)(people), (0, _Utils.randomValueFromArray)(people)]], [100.00, (0, _Utils.randomValueFromArray)(people), [(0, _Utils.randomValueFromArray)(people), (0, _Utils.randomValueFromArray)(people)]], [20.99, (0, _Utils.randomValueFromArray)(people), [(0, _Utils.randomValueFromArray)(people), (0, _Utils.randomValueFromArray)(people), (0, _Utils.randomValueFromArray)(people), (0, _Utils.randomValueFromArray)(people)]]);
+
+      // Controls amount of transactions created
+      for (var i = 0; i < amount; i++) {
+
+        var beneficiaries = [];
+
+        // Add random number of random beneficiaries
+
+        // Check to see that beneficiaries isn't empty.
+        var randomPersonIndex = (0, _Utils.randomNumber)(people.length);
+        if (randomPersonIndex == 0) {
+          randomPersonIndex = 1;
+        }
+
+        for (var j = 0; j < randomPersonIndex; j++) {
+          beneficiaries.push((0, _Utils.randomValueFromArray)(people));
+        }
+
+        mockTransactions.push([(0, _Utils.randomTotal)(), (0, _Utils.randomValueFromArray)(people), beneficiaries]);
+      }
+
       return mockTransactions.map(function (transaction) {
-        return new _Transaction2.default(transaction);
+        return new _Transaction2.default(transaction[0], transaction[1], transaction[2]);
+      });
+    }
+  }, {
+    key: 'listTransactions',
+    value: function listTransactions() {
+      this.transactions.forEach(function (transaction, index) {
+        // console.log(transaction)
+        console.log('Transaction ' + (index + 1) + ': Purchase for ' + transaction.amount + ' made by ' + transaction.purchaser + ' for: ' + transaction.beneficiaries);
       });
     }
   }]);
@@ -214,14 +241,29 @@ exports.default = Mocker;
 
 
 Object.defineProperty(exports, "__esModule", {
-    value: true
+  value: true
 });
 exports.randomValueFromArray = randomValueFromArray;
+exports.randomTotal = randomTotal;
+exports.randomNumber = randomNumber;
+exports.capitalize = capitalize;
 // Utility functions
 
 function randomValueFromArray(myArray) {
+  return myArray[Math.floor(Math.random() * myArray.length)];
+}
 
-    return myArray[Math.floor(Math.random() * myArray.length)];
+function randomTotal() {
+  var totals = [22.47, 124.96, 29.49, 19.49, 293.55, 82.59, 29.99];
+  return randomValueFromArray(totals);
+}
+
+function randomNumber(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 /***/ })

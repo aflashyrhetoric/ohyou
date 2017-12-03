@@ -2,11 +2,8 @@ import Person from './Person';
 import Transaction from './Transaction';
 import Mocker from './Mocker';
 
-const group = new Mocker();
+const group = new Mocker({transactionAmount: 10});
 
-group.people.forEach(person => {
-    console.log(person.name)
-});
-
-group.transactions.forEach(transaction => console.log(transaction))
+group.listPeople();
+group.listTransactions();
 
