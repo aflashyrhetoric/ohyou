@@ -1,9 +1,12 @@
 ## Easily flatten debts across a span of purchases
-#### Consolidates debts and potentially eliminates debts within circular relationship diagrams
+Consolidates debts and potentially eliminates debts within circular relationship diagrams
 
-enter transaction
-depth-first algorithm iterates over tree of purchases 
-each transaction creates a debt from beneficiary to purchaser
-counter-debts are cancelled and simplified to produce a final chart of debts
-circular loops are found and used to further simplify debts
+#### The gist
+- enter a new transaction, which will be stored as a new `Transaction` that can be processed to generate a table of computed properties: `Debts`, which represents who should pay who to recoup for expenses.
+- algorithm iterates over node graph of purchases
+- 1:1 debts are annulled
+- debts to self are annulled
+- circular debts are reduced 
 
+#### Future state
+- Add ability to create sub-transactions from existing transactions for better UX. For example, we add the receipt total from Target containing `Transaction`s that benefit all members (e.g. Jane/Sally/Joe/Louis), then create a "Sub-transaction" for "Eyeliner" that targets some subset of the group (e.g Jane and Sally *only*).
