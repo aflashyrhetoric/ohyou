@@ -8,7 +8,7 @@ process.traceDeprecation = true;
 
 var config = {
   // devtool: 'inline-source-map',
-  entry: './app.js',
+  entry: './src/app.js',
   output: {
     filename:  './app.bundle.js',
   },
