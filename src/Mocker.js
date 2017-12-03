@@ -2,6 +2,7 @@
 import Person from './Person'
 import Transaction from './Transaction'
 import { capitalize, randomNumber, randomTotal, randomValueFromArray } from './Utils'
+import {people} from '../Database.js'
 
 export default class Mocker {
   constructor(config) {
@@ -13,13 +14,6 @@ export default class Mocker {
   }
 
   mockPeople() {
-    let people = [
-      "rebecca",
-      "rachel",
-      "kevin",
-      "billy"
-    ]
-
    return people.map( (name) => {
       return new Person(name) 
     })
@@ -33,13 +27,6 @@ export default class Mocker {
   }
 
   mockTransactions(amount) {
-    let people = [
-      "rebecca",
-      "rachel",
-      "kevin",
-      "billy"
-    ]
-
     let mockTransactions = [];
 
     // Controls amount of transactions created

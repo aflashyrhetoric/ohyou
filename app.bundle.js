@@ -133,8 +133,9 @@ var group = new _Mocker2.default({
   transactionAmount: 10
 });
 
-group.listPeople();
-group.listTransactions();
+// group.listPeople();
+// group.listTransactions();
+console.log(group.transactions);
 
 /***/ }),
 /* 3 */
@@ -160,6 +161,8 @@ var _Transaction2 = _interopRequireDefault(_Transaction);
 
 var _Utils = __webpack_require__(4);
 
+var _Database = __webpack_require__(5);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -175,9 +178,7 @@ var Mocker = function () {
   _createClass(Mocker, [{
     key: 'mockPeople',
     value: function mockPeople() {
-      var people = ["rebecca", "rachel", "kevin", "billy"];
-
-      return people.map(function (name) {
+      return _Database.people.map(function (name) {
         return new _Person2.default(name);
       });
     }
@@ -192,8 +193,6 @@ var Mocker = function () {
   }, {
     key: 'mockTransactions',
     value: function mockTransactions(amount) {
-      var people = ["rebecca", "rachel", "kevin", "billy"];
-
       var mockTransactions = [];
 
       // Controls amount of transactions created
@@ -204,16 +203,16 @@ var Mocker = function () {
         // Add random number of random beneficiaries
 
         // Check to see that beneficiaries isn't empty.
-        var randomPersonIndex = (0, _Utils.randomNumber)(people.length);
+        var randomPersonIndex = (0, _Utils.randomNumber)(_Database.people.length);
         if (randomPersonIndex == 0) {
           randomPersonIndex = 1;
         }
 
         for (var j = 0; j < randomPersonIndex; j++) {
-          beneficiaries.push((0, _Utils.randomValueFromArray)(people));
+          beneficiaries.push((0, _Utils.randomValueFromArray)(_Database.people));
         }
 
-        mockTransactions.push([(0, _Utils.randomTotal)(), (0, _Utils.randomValueFromArray)(people), beneficiaries]);
+        mockTransactions.push([(0, _Utils.randomTotal)(), (0, _Utils.randomValueFromArray)(_Database.people), beneficiaries]);
       }
 
       return mockTransactions.map(function (transaction) {
@@ -267,6 +266,18 @@ function randomNumber(max) {
 function capitalize(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
 }
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+      value: true
+});
+var people = exports.people = ["rebecca", "rachel", "kevin", "billy"];
 
 /***/ })
 /******/ ]);

@@ -6,6 +6,6 @@ const group = new Mocker({
   transactionAmount: 10
 });
 
-group.listPeople();
-group.listTransactions();
-
+// group.listPeople();
+// group.listTransactions();
+console.log(group.transactions)
