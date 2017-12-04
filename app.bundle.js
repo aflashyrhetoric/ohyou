@@ -135,7 +135,14 @@ var group = new _Mocker2.default({
 
 // group.listPeople();
 // group.listTransactions();
-console.log(group.transactions);
+// console.log(group.transactions)
+
+// Add property "addTransaction" to Group
+group.addTransaction = function (transaction) {
+  this.transactions.push(transaction);
+};
+
+group.calculateDebts = function () {};
 
 /***/ }),
 /* 3 */
@@ -174,6 +181,9 @@ var Mocker = function () {
     this.people = this.mockPeople();
     this.transactions = config.transactionAmount ? this.mockTransactions(config.transactionAmount) : 5;
   }
+
+  // Returns people array
+
 
   _createClass(Mocker, [{
     key: 'mockPeople',

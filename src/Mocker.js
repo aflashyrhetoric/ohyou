@@ -13,6 +13,7 @@ export default class Mocker {
       : 5;
   }
 
+  // Returns people array
   mockPeople() {
    return people.map( (name) => {
       return new Person(name) 

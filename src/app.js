@@ -8,4 +8,13 @@ const group = new Mocker({
 
 // group.listPeople();
 // group.listTransactions();
-console.log(group.transactions)
+// console.log(group.transactions)
+
+// Add property "addTransaction" to Group
+group.addTransaction = function(transaction) {
+  this.transactions.push(transaction);
+}
+
+group.calculateDebts = function() {
+
+}
