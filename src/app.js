@@ -17,8 +17,13 @@ group.addTransaction = function(transaction) {
 
 group.calculateDebts = function() {
   this.people.forEach( (person) => {
-    console.log(person);
-  });
+    let newDebts = {};
+    group.people.forEach( (person) => {
+      newDebts[person] = 0;
+    })
+    person.debts = newDebts;
+  })
 }
 
 group.calculateDebts();
+group.listPeopleRaw();

@@ -82,6 +82,7 @@ var Person = function Person(name) {
   _classCallCheck(this, Person);
 
   this.id = (0, _Utils.randomNumber)(2000), this.name = name;
+  this.debts = {};
 };
 
 exports.default = Person;
@@ -146,11 +147,16 @@ group.addTransaction = function (transaction) {
 
 group.calculateDebts = function () {
   this.people.forEach(function (person) {
-    console.log(person);
+    var newDebts = {};
+    group.people.forEach(function (person) {
+      newDebts[person] = 0;
+    });
+    person.debts = newDebts;
   });
 };
 
 group.calculateDebts();
+group.listPeopleRaw();
 
 /***/ }),
 /* 3 */
@@ -199,6 +205,11 @@ var Mocker = function () {
       return _Database.people.map(function (name) {
         return new _Person2.default(name);
       });
+    }
+  }, {
+    key: 'listPeopleRaw',
+    value: function listPeopleRaw() {
+      console.log(this.people);
     }
   }, {
     key: 'listPeople',

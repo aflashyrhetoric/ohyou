@@ -20,6 +20,9 @@ export default class Mocker {
     })
   }
 
+  listPeopleRaw() {
+    console.log(this.people);
+  }
   listPeople() {
     console.log(`This group consists of:`)
     this.people.forEach((person, index) => {
