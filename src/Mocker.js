@@ -70,6 +70,12 @@ export default class Mocker {
     })
   }
 
+  listTransactionsRaw() {
+    this.transactions.forEach((transaction, index) => {
+      console.log(transaction)
+    })
+  }
+
   listTransactions() {
     this.transactions.forEach((transaction, index) => {
       // console.log(transaction)

@@ -3,11 +3,11 @@ import Transaction from './Transaction';
 import Mocker from './Mocker';
 
 const group = new Mocker({
-  transactionAmount: 1
+  transactionAmount: 4
 });
 
 // group.listPeople();
-// group.listTransactions();
+// group.listTransactionsRaw();
 // console.log(group.transactions)
 
 // Add property "addTransaction" to Group
@@ -16,5 +16,9 @@ group.addTransaction = function(transaction) {
 }
 
 group.calculateDebts = function() {
-
+  this.people.forEach( (person) => {
+    console.log(person);
+  });
 }
+
+group.calculateDebts();

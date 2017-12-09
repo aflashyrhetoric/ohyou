@@ -74,12 +74,14 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _Utils = __webpack_require__(4);
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Person = function Person(name) {
   _classCallCheck(this, Person);
 
-  this.name = name;
+  this.id = (0, _Utils.randomNumber)(2000), this.name = name;
 };
 
 exports.default = Person;
@@ -130,11 +132,11 @@ var _Mocker2 = _interopRequireDefault(_Mocker);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var group = new _Mocker2.default({
-  transactionAmount: 1
+  transactionAmount: 4
 });
 
 // group.listPeople();
-// group.listTransactions();
+// group.listTransactionsRaw();
 // console.log(group.transactions)
 
 // Add property "addTransaction" to Group
@@ -142,7 +144,13 @@ group.addTransaction = function (transaction) {
   this.transactions.push(transaction);
 };
 
-group.calculateDebts = function () {};
+group.calculateDebts = function () {
+  this.people.forEach(function (person) {
+    console.log(person);
+  });
+};
+
+group.calculateDebts();
 
 /***/ }),
 /* 3 */
@@ -234,6 +242,13 @@ var Mocker = function () {
 
       return mockTransactions.map(function (transaction) {
         return new _Transaction2.default(transaction[0], transaction[1], transaction[2]);
+      });
+    }
+  }, {
+    key: 'listTransactionsRaw',
+    value: function listTransactionsRaw() {
+      this.transactions.forEach(function (transaction, index) {
+        console.log(transaction);
       });
     }
   }, {
