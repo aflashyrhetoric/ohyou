@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -74,7 +74,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Utils = __webpack_require__(4);
+var _Utils = __webpack_require__(1);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -89,6 +89,39 @@ exports.default = Person;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.randomValueFromArray = randomValueFromArray;
+exports.randomTotal = randomTotal;
+exports.randomNumber = randomNumber;
+exports.capitalize = capitalize;
+// Utility functions
+
+function randomValueFromArray(myArray) {
+  return myArray[Math.floor(Math.random() * myArray.length)];
+}
+
+function randomTotal() {
+  var totals = [22.47, 124.96, 29.49, 19.49, 293.55, 82.59, 29.99];
+  return randomValueFromArray(totals);
+}
+
+function randomNumber(max) {
+  return Math.floor(Math.random() * max);
+}
+
+function capitalize(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -112,7 +145,7 @@ var Transaction = function Transaction(amount, purchaser, beneficiaries) {
 exports.default = Transaction;
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -122,13 +155,15 @@ var _Person = __webpack_require__(0);
 
 var _Person2 = _interopRequireDefault(_Person);
 
-var _Transaction = __webpack_require__(1);
+var _Transaction = __webpack_require__(2);
 
 var _Transaction2 = _interopRequireDefault(_Transaction);
 
-var _Mocker = __webpack_require__(3);
+var _Mocker = __webpack_require__(4);
 
 var _Mocker2 = _interopRequireDefault(_Mocker);
+
+var _tar = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../Library/Caches/typescript/2.6/node_modules/@types/tar\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -156,10 +191,13 @@ group.calculateDebts = function () {
 };
 
 group.calculateDebts();
-group.listPeopleRaw();
+
+// people = group.listPeopleRaw();
+// people = people[0];
+// console.log(group);
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -176,11 +214,11 @@ var _Person = __webpack_require__(0);
 
 var _Person2 = _interopRequireDefault(_Person);
 
-var _Transaction = __webpack_require__(1);
+var _Transaction = __webpack_require__(2);
 
 var _Transaction2 = _interopRequireDefault(_Transaction);
 
-var _Utils = __webpack_require__(4);
+var _Utils = __webpack_require__(1);
 
 var _Database = __webpack_require__(5);
 
@@ -276,39 +314,6 @@ var Mocker = function () {
 }();
 
 exports.default = Mocker;
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.randomValueFromArray = randomValueFromArray;
-exports.randomTotal = randomTotal;
-exports.randomNumber = randomNumber;
-exports.capitalize = capitalize;
-// Utility functions
-
-function randomValueFromArray(myArray) {
-  return myArray[Math.floor(Math.random() * myArray.length)];
-}
-
-function randomTotal() {
-  var totals = [22.47, 124.96, 29.49, 19.49, 293.55, 82.59, 29.99];
-  return randomValueFromArray(totals);
-}
-
-function randomNumber(max) {
-  return Math.floor(Math.random() * max);
-}
-
-function capitalize(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
 
 /***/ }),
 /* 5 */

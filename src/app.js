@@ -26,4 +26,7 @@ group.calculateDebts = function() {
 }
 
 group.calculateDebts();
-group.listPeopleRaw();
+
+// people = group.listPeopleRaw();
+// people = people[0];
+// console.log(group);
