@@ -50,21 +50,21 @@ var config = {
       {
         test: /\.scss$/,
         exclude: [/node_modules/],
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: { url: true, importLoaders: 1, sourceMap: true }
-            },
-            'postcss-loader',
-            {
-              loader: 'sass-loader',
-              options: { url: true, sourceMap: true }
-            },
-            'import-glob-loader'
-          ]
-        })
+        // use: ExtractTextPlugin.extract({
+        //   fallback: 'style-loader',
+        //   use: [
+        //     {
+        //       loader: 'css-loader',
+        //       options: { url: true, importLoaders: 1, sourceMap: true }
+        //     },
+        //     'postcss-loader',
+        //     {
+        //       loader: 'sass-loader',
+        //       options: { url: true, sourceMap: true }
+        //     },
+        //     'import-glob-loader'
+        //   ]
+        // })
       },
     ]
   },

@@ -85,6 +85,4 @@ export default class Mocker {
       console.log(`Transaction ${index + 1}: Purchase for ${transaction.amount} made by ${transaction.purchaser} for: ${transaction.beneficiaries}`)
     })
   }
-
-
 }

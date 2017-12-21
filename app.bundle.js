@@ -163,8 +163,6 @@ var _Mocker = __webpack_require__(4);
 
 var _Mocker2 = _interopRequireDefault(_Mocker);
 
-var _tar = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../Library/Caches/typescript/2.6/node_modules/@types/tar\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var group = new _Mocker2.default({
