@@ -5,9 +5,9 @@ export function randomValueFromArray(myArray) {
 }
 
 export function randomTotal() {
-  let totals = [
+  const totals = [
     22.47,
-   124.96,
+    124.96,
     29.49,
     19.49,
     293.55,
@@ -18,7 +18,7 @@ export function randomTotal() {
 }
 
 export function randomNumber(max) {
-  return Math.floor(Math.random() * max) 
+  return Math.floor(Math.random() * max);
 }
 
 export function capitalize(string) {

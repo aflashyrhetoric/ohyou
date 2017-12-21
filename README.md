@@ -1,17 +1,30 @@
-# Easily flatten debts across a span of purchases
-Consolidates debts and potentially eliminates debts within circular relationship diagrams
+# ohyou
 
-## The gist
+> A Vue.js project
 
-#### Implementation #1
-- enter a new transaction, which will be stored as a new `Transaction` that can be processed to generate a table of computed properties: `Debts`, which represents who should pay who to recoup for expenses.
-- algorithm iterates over node graph of purchases
-- 1:1 debts are annulled
-- debts to self are annulled
-- circular debts are reduced 
+## Build Setup
 
-#### Implementation #2
-- Given a table of `Transaction`s, calculate a set of ratios, to be applied against the total, that represent the debts owed.
+``` bash
+# install dependencies
+npm install
 
-#### Future state
-- Add ability to create sub-transactions from existing transactions for better UX. For example, we add the receipt total from Target containing `Transaction`s that benefit all members (e.g. Jane/Sally/Joe/Louis), then create a "Sub-transaction" for "Eyeliner" that targets some subset of the group (e.g Jane and Sally *only*).
+# serve with hot reload at localhost:8080
+npm run dev
+
+# build for production with minification
+npm run build
+
+# build for production and view the bundle analyzer report
+npm run build --report
+
+# run unit tests
+npm run unit
+
+# run e2e tests
+npm run e2e
+
+# run all tests
+npm test
+```
+
+For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
