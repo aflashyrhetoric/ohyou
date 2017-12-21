@@ -1,8 +1,8 @@
-import Mocker from './Mocker';
+// import Mocker from './Mocker';
 
-const group = new Mocker({
-  transactionAmount: 4,
-});
+// const group = new Mocker({
+//   transactionAmount: 4,
+// });
 
 // group.listPeople();
 // group.listTransactionsRaw();

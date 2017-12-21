@@ -1,83 +1,82 @@
-// This class mocks data returned from a database
-import Person from './Person';
-import Transaction from './Transaction';
-import { capitalize, randomNumber, randomTotal, randomValueFromArray } from './Utils';
-import { people } from '../Database';
+// // This class mocks data returned from a database
+// import Person from './Person';
+// import Transaction from './Transaction';
+// import { capitalize, randomNumber, randomTotal, randomValueFromArray } from './Utils';
+// import { people } from '../Database';
 
-export default class Mocker {
-  constructor(config) {
-    this.people = this.mockPeople();
-    this.transactions =
-      config.transactionAmount
-      ? this.mockTransactions(config.transactionAmount)
-      : 5;
-  }
+// export default class Mocker {
+//   constructor(config) {
+//     this.people = this.mockPeople();
+//     this.transactions =
+//       config.transactionAmount
+//       ? this.mockTransactions(config.transactionAmount)
+//       : 5;
+//   }
 
-  // Returns people array
-  mockPeople() {
-    return people.map(name => new Person(name));
-  }
+//   // Returns people array
+//   mockPeople() {
+//     return people.map(name => new Person(name));
+//   }
 
-  listPeopleRaw() {
-    console.log(this.people);
-  }
-  listPeople() {
-    console.log('This group consists of:');
-    this.people.forEach((person, index) => {
-      console.log(capitalize(person.name));
-    });
-  }
+//   listPeopleRaw() {
+//     console.log(this.people);
+//   }
+//   listPeople() {
+//     console.log('This group consists of:');
+//     this.people.forEach((person, index) => {
+//       console.log(capitalize(person.name));
+//     });
+//   }
 
-  mockTransactions(amount) {
-    const mockTransactions = [];
+//   mockTransactions(amount) {
+//     const mockTransactions = [];
 
-    // Controls amount of transactions created
-    for (let i = 0; i < amount; i++) {
-      const beneficiaries = [];
+//     // Controls amount of transactions created
+//     for (let i = 0; i < amount; i++) {
+//       const beneficiaries = [];
 
-      // Add random number of random beneficiaries
+//       // Add random number of random beneficiaries
 
-      // Check to see that beneficiaries isn't empty.
-      let randomPersonIndex = randomNumber(people.length);
-      if (randomPersonIndex == 0) {
-        randomPersonIndex = 1;
-      }
+//       // Check to see that beneficiaries isn't empty.
+//       let randomPersonIndex = randomNumber(people.length);
+//       if (randomPersonIndex == 0) {
+//         randomPersonIndex = 1;
+//       }
 
-      for (let j = 0; j < randomPersonIndex; j++) {
-        // Get a random person
-        let randomPerson = randomValueFromArray(people);
+//       for (let j = 0; j < randomPersonIndex; j++) {
+//         // Get a random person
+//         let randomPerson = randomValueFromArray(people);
 
-        // If they exist already, exclude
-        while (beneficiaries.includes(randomPerson)) {
-          randomPerson = randomValueFromArray(people);
-        }
-        beneficiaries.push(randomPerson);
-      }
+//         // If they exist already, exclude
+//         while (beneficiaries.includes(randomPerson)) {
+//           randomPerson = randomValueFromArray(people);
+//         }
+//         beneficiaries.push(randomPerson);
+//       }
 
-      mockTransactions.push([
-        randomTotal(),
-        randomValueFromArray(people),
-        beneficiaries,
-      ]);
-    }
+//       mockTransactions.push([
+//         randomTotal(),
+//         randomValueFromArray(people),
+//         beneficiaries,
+//       ]);
+//     }
 
-    return mockTransactions.map(transaction => new Transaction(
-        transaction[0],
-        transaction[1],
-        transaction[2],
-      ));
-  }
+//     return mockTransactions.map(transaction => new Transaction(
+//         transaction[0],
+//         transaction[1],
+//         transaction[2],
+//       ));
+//   }
 
-  listTransactionsRaw() {
-    this.transactions.forEach((transaction, index) => {
-      console.log(transaction);
-    });
-  }
+//   listTransactionsRaw() {
+//     this.transactions.forEach((transaction, index) => {
+//       console.log(transaction);
+//     });
+//   }
 
-  listTransactions() {
-    this.transactions.forEach((transaction, index) => {
-      // console.log(transaction)
-      console.log(`Transaction ${index + 1}: Purchase for ${transaction.amount} made by ${transaction.purchaser} for: ${transaction.beneficiaries}`);
-    });
-  }
-}
+//   listTransactions() {
+//     this.transactions.forEach((transaction, index) => {
+//       // console.log(transaction)
+//     });
+//   }
+// }
