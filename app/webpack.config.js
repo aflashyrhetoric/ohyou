@@ -8,9 +8,9 @@ process.traceDeprecation = true;
 
 var config = {
   // devtool: 'inline-source-map',
-  entry: './src/app.js',
+  entry: './app/src/app.js',
   output: {
-    filename:  './app.bundle.js',
+    filename:  './app/bundle.js',
   },
   externals: {
     // require("jquery") is external and available
@@ -70,11 +70,11 @@ var config = {
   },
   plugins: [
     // new ExtractTextPlugin({
-    //   filename: "../css/[name].css",
+    //   filename: "../app/css/[name].css",
     //   allChunks: true
     // }),
     // new StyleLintPlugin({
-    //   files: "./view/scss/**/*.scss"
+    //   files: "./app/view/scss/**/*.scss"
     // }),
     // new webpack.ProvidePlugin({
     //   "$": "jquery",
